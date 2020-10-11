@@ -42,6 +42,12 @@ media/*
 venv
 .secrets.*
 
+# environment set up
+.env
+
+# Sessions
+*.session
+
 # IDE's and Text Editor Setting Up
 
 .idea/
