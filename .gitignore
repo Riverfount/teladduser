@@ -47,7 +47,7 @@ venv
 .env
 
 # Sessions
-*.session
+*.session*
 
 # IDE's and Text Editor Setting Up
 
