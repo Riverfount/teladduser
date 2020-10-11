@@ -7,7 +7,7 @@ from decouple import config
 
 @click.command()
 def teladduser():
-    """Log in on a Telegram account and list all megagroup of it."""
+    """Log in on a Telegram account and list all super group of it."""
     # Login on a Telegram account
     api_id = config('API_ID')
     api_hash = config('API_HASH')
@@ -16,7 +16,8 @@ def teladduser():
     client.connect()
     if not client.is_user_authorized():
         client.send_code_request(phone)
-        client.sign_in(phone, input('Enter the Login Code that was send to yor Telegram app: '))
+        login_code = click.prompt('Enter the Login Code that was send to yor Telegram app: ', type=int)
+        client.sign_in(phone, login_code)
     # Get all Groups of the logged user
     chats = []
     last_date = None
@@ -31,7 +32,7 @@ def teladduser():
             hash=0
         )
     )
-    # Get only the mega group of the logged user
+    # Get only the super group of the logged user
     chats.extend(result.chats)
     for chat in chats:
         try:
@@ -42,6 +43,6 @@ def teladduser():
     # Select a group to add users
     for i, g in enumerate(groups):
         print(f"{i} - {g.title}")
-    g_index = input("Enter Number of Group you want add users: ")
+    g_index = click.prompt("Enter Number of Group you want add users: ", type=int)
     target_group = groups[int(g_index)]
     print(f'The selected group was: {target_group.title}')
