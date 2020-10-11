@@ -22,13 +22,14 @@ lib64
 # Installer logs
 pip-log.txt
 
-# Unit test / coverage reports
+# Unit test or pytest / coverage reports
 .coverage
 .tox
 nosetests.xml
 .email_password.txt
 .db_password.txt
 local_settings.py
+.pytest_cache
 
 # Translations
 *.mo
